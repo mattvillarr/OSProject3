@@ -51,6 +51,8 @@ public class Project3 {
                 break;
 
             case "SPN"  :
+                SPN SPNSched = new SPN(jobList);
+                SPNSched.scheduleJobs();
                 break;
             case "SRT"  :
                 break;

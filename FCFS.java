@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-//import java.util.Queue;
 
 public class FCFS extends Schedule {
     private List<Job> jList;
@@ -12,7 +11,7 @@ public class FCFS extends Schedule {
 
     public void scheduleJobs() {
         StringBuilder sb[] = new StringBuilder[jList.size()];
-        for (int i = 0; i < sb.length; i++) 
+        for(int i = 0; i < sb.length; i++) 
             sb[i] = new StringBuilder("");
 
         int sbInx = 0;
