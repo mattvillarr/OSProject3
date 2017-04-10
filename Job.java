@@ -30,10 +30,6 @@ public class Job {
         this.duration = duration;
     } //end duration
 
-    public void jobRan() { //reduces duration after being run for a time slice 
-        duration--;
-    } //end jobRan
-
     public String runJob() { //non-preemptive run
         StringBuilder running = new StringBuilder();
         for(int i = 0; i < duration; i++) 
