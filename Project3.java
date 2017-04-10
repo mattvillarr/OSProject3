@@ -1,8 +1,9 @@
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Run {
+public class Project3 {
     public static void main(String args[]) {
         Scanner scan = null;
     	
@@ -16,9 +17,9 @@ public class Run {
     		while(scan.hasNextLine()) {
     			
     			String temp = scan.nextLine();
-    			String split[] = tempString.split("\\t");
+    			String split[] = temp.split("\\t");
 
-    			Job makeJob = new Job(split[0], (int) split[1], (int) split[2]);
+    			Job makeJob = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
                 jobList.add(makeJob);
     		}// end while
     	}// end try
@@ -34,13 +35,14 @@ public class Run {
                 break;
 
             case "RR"   :
-                if(args[2].isEmpty() || (int) args[2] <= 0) { //invalid quantum input
+                if(args[2].isEmpty() || Integer.parseInt(args[2]) <= 0) { //invalid quantum input
                     System.out.println("ERROR! Round Robin needs a valid quantum value!");
                     System.exit(0);
                 } //end if
 
-                int quantum = args[2];
+                int quantum = Integer.parseInt(args[2]);
                 RoundRobin RRSched = new RoundRobin(jobList, quantum);
+                RRSched.scheduleJobs();
                 break;
 
             case "SPN"  :

@@ -1,3 +1,4 @@
+
 public class Job {
     private char name;
     private int arrTime;
@@ -32,4 +33,21 @@ public class Job {
     public void jobRan() { //reduces duration after being run for a time slice 
         duration--;
     } //end jobRan
-} //end duration
+
+    public String runJob() { //non-preemptive run
+        StringBuilder running = new StringBuilder();
+        for(int i = 0; i < duration; i++) 
+            running.append(name);
+
+        return running.toString();
+    } //end runJob(0)
+
+    public String runJob(int quantum) { //preemptive run
+        StringBuilder running = new StringBuilder();
+        for(int i = 0; i < quantum; i++) 
+            running.append(name);
+    
+        duration -= quantum;
+        return running.toString();
+    } //end runJob(1)
+} //end Job

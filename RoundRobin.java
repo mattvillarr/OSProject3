@@ -9,8 +9,13 @@ public class RoundRobin extends Schedule {
         this.qs = qs;
     } //end RoundRobin(2)
 
-    public void scheduleJobs() {
+    public void scheduleJobs() { 
+
 
     }
 
+    public void printJobs(StringBuilder jobs[]) { 
+
+
+    }
 } //end RoundRobin
