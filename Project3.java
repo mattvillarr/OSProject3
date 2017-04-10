@@ -35,7 +35,12 @@ public class Project3 {
                 break;
 
             case "RR"   :
-                if(args[2].isEmpty() || Integer.parseInt(args[2]) <= 0) { //invalid quantum input
+                if(args.length != 3) {
+                    System.out.println("ERROR! Round Robin needs a quantum value passed from the command line.");
+                    System.exit(0);
+                } //end if
+                
+                 if(Integer.parseInt(args[2]) <= 0) { //invalid quantum input
                     System.out.println("ERROR! Round Robin needs a valid quantum value!");
                     System.exit(0);
                 } //end if

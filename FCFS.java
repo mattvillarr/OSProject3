@@ -11,7 +11,7 @@ public class FCFS extends Schedule {
     } //end FCFS(1)
 
     public void scheduleJobs() {
-        StringBuilder sb[] = new StringBuilder[jList.size() + 2];
+        StringBuilder sb[] = new StringBuilder[jList.size()];
         for (int i = 0; i < sb.length; i++) 
             sb[i] = new StringBuilder("");
 
@@ -41,10 +41,10 @@ public class FCFS extends Schedule {
         printJobs(sb);
     } //end scheduleJobs
 
-    public void printJobs(StringBuilder jobs[]) {
+    public void printJobs(StringBuilder jOut[]) {
         System.out.println("FCFS\n");
-        for(int i = 0; i < jobs.length; i++) 
-            System.out.println(jobs[i]);
+        for(int i = 0; i < jOut.length; i++) 
+            System.out.println(jOut[i]);
     } //end printJobs
 } //end FCFS
 

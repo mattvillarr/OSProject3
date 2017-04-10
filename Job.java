@@ -44,10 +44,13 @@ public class Job {
 
     public String runJob(int quantum) { //preemptive run
         StringBuilder running = new StringBuilder();
-        for(int i = 0; i < quantum; i++) 
+        for(int i = 0; i < quantum; i++) {
+            if(duration == 0)
+                break;
             running.append(name);
+            duration--;
+        } //end for
     
-        duration -= quantum;
         return running.toString();
     } //end runJob(1)
 } //end Job
