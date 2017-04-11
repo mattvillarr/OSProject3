@@ -32,17 +32,33 @@ public class MF extends Schedule {
                 } //end if
              } //end for
 
+             String temp = null;
+             Job currJob = null; 
              if(!highQ.isEmpty()) {
-                 
+                 currJob = highQ.poll();
+                 temp = currJob.runJob(qs);
+
+                 if(currJob.getDuration() > 0)
+                    midQ.add(currJob);
              } //end if
              else if(!midQ.isEmpty()) {
+                 currJob = midQ.poll();
+                 temp = currJob.runJob(qs);
 
+                 if(currJob.getDuration() > 0)
+                    lowQ.add(currJob);
              } //end else if
              else { //run job in low queue
+                currJob = lowQ.poll();
+                temp = currJob.runJob(qs);
 
+                if(currJob.getDuration() > 0)
+                    lowQ.add(currJob);
              } //end else
 
-             time++;
+            //  add code to put temp in the correct index of jOut[]
+
+             time += temp.length(); //can't use qs since it may be greater than the duration of the job
         } //end while
         System.out.println("Multilevel Feedback, quantum " + qs + "\n");
         printjobs(jOut);
