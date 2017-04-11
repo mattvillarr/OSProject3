@@ -30,6 +30,11 @@ public class Job {
         this.duration = duration;
     } //end duration
 
+    public double calcRR(int time) { //for HRRN
+        int waitTime = time - arrTime;
+        return (waitTime + duration) / duration;
+    } //end calcRR
+
     public String runJob() { //non-preemptive run
         StringBuilder running = new StringBuilder();
         for(int i = 0; i < duration; i++) 

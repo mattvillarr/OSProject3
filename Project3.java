@@ -61,7 +61,10 @@ public class Project3 {
                 break;
 
             case "HRRN" :
+                HRRN HRRNSched = new HRRN(jobList);
+                HRRNSched.scheduleJobs();
                 break;
+                
             case "MF"   :
                 break;
             case "ALL"  :
