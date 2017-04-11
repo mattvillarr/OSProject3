@@ -4,12 +4,12 @@ import java.util.Queue;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
-public class SPN extends Schedule {
+public class SRT extends Schedule {
     private List<Job> jList;
 
-    public SPN(List<Job> jList) {
+    public SRT(List<Job> jList) {
         this.jList = jList;
-    } //end SPN(1)
+    } //end SRT(1)
 
     public void scheduleJobs() {
         StringBuilder jOut[] = new StringBuilder[jList.size()];
@@ -20,38 +20,37 @@ public class SPN extends Schedule {
         Comparator<Job> comparator = new DurCompare(); //ordered by duration
         PriorityQueue<Job> pq = new PriorityQueue<>(jList.size(), comparator);
 
-        while(!jList.isEmpty() || !pq.isEmpty()) { //run until no more jobs and no more jobs waiting
+        while(!jList.isEmpty() || !pq.isEmpty()) { //run until no more jobs in list and no jobs waiting in queue
             for(int i = 0; i < jList.size(); i++) {
-                //time is accumulated all at once so anything with a start time less than it is waiting to run
-                if(time >= jList.get(i).getArrTime()) { 
-                    pq.add(jList.get(i)); //add job to priority queue
-                    jList.remove(jList.get(i)); //remove from list of jobs
-                } //end if    
+                if(time == jList.get(i).getArrTime()) {
+                    pq.add(jList.get(i));
+                    jList.remove(jList.get(i));
+                } //end if
             } //end for
 
             if(!pq.isEmpty()) {
-                Job currJob = pq.poll(); //the next job with the shortest SPN
-                String temp = currJob.runJob();
+                Job currJob = pq.peek();
+                String temp = currJob.runJob(1); //runs for one quanta
+
+                if(currJob.getDuration() == 0)
+                    pq.poll(); //job is completed, remove job from queue
 
                 for(int j = 0; j < jOut.length; j++) {
                     if(j + 65 == (int) currJob.getName())
                         jOut[j].append(temp);
                     else {
-                        for(int k = 0; k < temp.length(); k++)
-                            jOut[j].append(" ");
+                        jOut[j].append(" ");
                     } //end else
                 } //end for
-                time += currJob.getDuration() -1; //minus one because time is incremented every while iteration
             } //end if
-            time++; //increment the time
+            time++;
         } //end while
         printJobs(jOut);
     } //end scheduleJobs
 
     public void printJobs(StringBuilder jOut[]) {
-        System.out.println("Shortest Process Next\n");
+        System.out.println("Shortest Remaining Time\n");
         for(int i = 0; i < jOut.length; i++) 
             System.out.println(jOut[i]);
-    } //end printJobs
-
-} //end SPN
+    }
+} //end SRT

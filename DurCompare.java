@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-class SPNCompare implements Comparator<Job> {
+class DurCompare implements Comparator<Job> {
 
   @Override
   public int compare(Job a, Job b) {
