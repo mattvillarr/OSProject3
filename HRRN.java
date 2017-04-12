@@ -9,7 +9,7 @@ public class HRRN extends Schedule {
     } //end HRRT(1)
 
     public void scheduleJobs() {
-         StringBuilder jOut[] = new StringBuilder[jList.size()];
+        StringBuilder jOut[] = new StringBuilder[jList.size()];
         for(int i = 0; i < jOut.length; i++) 
             jOut[i] = new StringBuilder("");
 
@@ -29,7 +29,7 @@ public class HRRN extends Schedule {
 
             for(int j = 0; j < jWaiting.size(); j++) {
                 double check = jWaiting.get(j).calcRR(time);
-                if(check > hrr) {
+                if(Double.compare(check, hrr) > 0) {
                     hrr = check; //new max hrr
                     HRRIdx = j; //updates the index
                 } //end if

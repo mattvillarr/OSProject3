@@ -56,17 +56,23 @@ public class MF extends Schedule {
                     lowQ.add(currJob);
              } //end else
 
-            //  add code to put temp in the correct index of jOut[]
+             for(int j = 0; j < jOut.length; j++) {
+                if(j + 65 == (int) currJob.getName()) //compare ASCII
+                    jOut[j].append(temp);
+                else {
+                    for(int k = 0; k < temp.length(); k++)
+                        jOut[j].append(" ");   
+                } //end else      
+            } //end for
 
              time += temp.length(); //can't use qs since it may be greater than the duration of the job
         } //end while
         System.out.println("Multilevel Feedback, quantum " + qs + "\n");
-        printjobs(jOut);
+        printJobs(jOut);
     } //end scheduleJobs
 
     public void printJobs(StringBuilder jOut[]) {
         for(int i = 0; i < jOut.length; i++) 
             System.out.println(jOut[i]);
     } //end printJobs
-
 } //end MF
