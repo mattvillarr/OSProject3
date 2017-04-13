@@ -16,27 +16,22 @@ public class HRRN extends Schedule {
         List<Job> jWaiting = new ArrayList<>();
         
         int time = 0;
-        while(!jList.isEmpty() || !jWaiting.isEmpty()) {
-            for(int i = 0; i < jList.size(); i++) {
-                if(time >= jList.get(i).getArrTime()) {
-                    jWaiting.add(jList.get(i));
-                    jList.remove(i);
-                } //end if
-            } //end for
-
+        while(!jList.isEmpty()) {
             int HRRIdx = -1;
             double hrr = -1;
 
-            for(int j = 0; j < jWaiting.size(); j++) {
-                double check = jWaiting.get(j).calcRR(time);
-                if(Double.compare(check, hrr) > 0) {
-                    hrr = check; //new max hrr
-                    HRRIdx = j; //updates the index
+            for(int i = 0; i < jList.size(); i++) {
+                if(time >= jList.get(i).getArrTime()) {
+                    double check = jList.get(i).calcRR(time);
+                    if(Double.compare(check, hrr) > 0) {
+                        hrr = check; //new max hrr
+                        HRRIdx = i; //updates the index
+                    }
                 } //end if
             } //end for
 
-            Job currJob = jWaiting.get(HRRIdx);
-            jWaiting.remove(currJob);
+            Job currJob = jList.get(HRRIdx);
+            jList.remove(HRRIdx);
 
             String temp = currJob.runJob();
 
