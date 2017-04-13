@@ -13,9 +13,8 @@ public class HRRN extends Schedule {
         for(int i = 0; i < jOut.length; i++) 
             jOut[i] = new StringBuilder("");
 
-        List<Job> jWaiting = new ArrayList<>();
-        
         int time = 0;
+        
         while(!jList.isEmpty()) {
             int HRRIdx = -1;
             double hrr = -1;
