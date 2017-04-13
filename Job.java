@@ -10,6 +10,11 @@ public class Job {
         this.duration = duration;
     } //end Job(3)
 
+    public Job(Job copy) {
+        this.name = copy.name;
+        this.arrTime = copy.arrTime;
+        this.duration = copy.duration;
+    } //end Job(1)
     public char getName() {
         return name;
     } //end getName

@@ -30,11 +30,11 @@ public class Project3 {
     			String split[] = temp.split("\\t");
 
     			Job makeJob = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                Job makeJob2 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                Job makeJob3 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                Job makeJob4 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                Job makeJob5 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                Job makeJob6 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob2 = new Job(makeJob);
+                Job makeJob3 = new Job(makeJob);
+                Job makeJob4 = new Job(makeJob);
+                Job makeJob5 = new Job(makeJob);
+                Job makeJob6 = new Job(makeJob);
                 jobList.add(makeJob);
                 jobList2.add(makeJob2);
                 jobList3.add(makeJob3);
