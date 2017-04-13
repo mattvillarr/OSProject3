@@ -10,6 +10,11 @@ public class Project3 {
     	File infile = new File(args[0]);
 
         List<Job> jobList = new ArrayList<>();
+        List<Job> jobList2 = new ArrayList<>();
+        List<Job> jobList3 = new ArrayList<>();
+        List<Job> jobList4 = new ArrayList<>();
+        List<Job> jobList5 = new ArrayList<>();
+        List<Job> jobList6 = new ArrayList<>();
 
         if(args.length < 2 || args.length > 3){
             System.out.println("ERROR! Incorrect number of arguments.");
@@ -25,7 +30,17 @@ public class Project3 {
     			String split[] = temp.split("\\t");
 
     			Job makeJob = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob2 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob3 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob4 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob5 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                Job makeJob6 = new Job(split[0].charAt(0), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
                 jobList.add(makeJob);
+                jobList2.add(makeJob2);
+                jobList3.add(makeJob3);
+                jobList4.add(makeJob4);
+                jobList5.add(makeJob5);
+                jobList6.add(makeJob6);
     		}// end while
     	}// end try
     	catch(FileNotFoundException e){
@@ -101,19 +116,19 @@ public class Project3 {
                 FCFS fSched1 = new FCFS(jobList);
                 fSched1.scheduleJobs();
                 
-                RoundRobin RRSched1 = new RoundRobin(jobList, quantum);
+                RoundRobin RRSched1 = new RoundRobin(jobList2, quantum);
                 RRSched1.scheduleJobs();
 
-                SPN SPNSched1 = new SPN(jobList);
+                SPN SPNSched1 = new SPN(jobList3);
                 SPNSched1.scheduleJobs();
 
-                SRT SRTSched1 = new SRT(jobList);
+                SRT SRTSched1 = new SRT(jobList4);
                 SRTSched1.scheduleJobs();
 
-                HRRN HRRNSched1 = new HRRN(jobList);
+                HRRN HRRNSched1 = new HRRN(jobList5);
                 HRRNSched1.scheduleJobs();
 
-                MF MFSched1 = new MF(jobList, quantum);
+                MF MFSched1 = new MF(jobList6, quantum);
                 MFSched1.scheduleJobs();
                 break;     
 
