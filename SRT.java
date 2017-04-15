@@ -21,12 +21,17 @@ public class SRT extends Schedule {
         PriorityQueue<Job> pq = new PriorityQueue<>(jList.size(), comparator);
 
         while(!jList.isEmpty() || !pq.isEmpty()) { //run until no more jobs in list and no jobs waiting in queue
+
+            int idxRm = -1;
             for(int i = 0; i < jList.size(); i++) {
                 if(time == jList.get(i).getArrTime()) {
                     pq.add(jList.get(i));
-                    jList.remove(jList.get(i));
+                    idxRm = i;
                 } //end if
             } //end for
+            
+            if(idxRm != -1)
+                jList.remove(idxRm);
 
             if(!pq.isEmpty()) {
                 Job currJob = pq.peek();

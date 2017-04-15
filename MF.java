@@ -24,17 +24,23 @@ public class MF extends Schedule {
         Queue<Job> midQ = new LinkedList<>();
         Queue<Job> lowQ = new LinkedList<>();
 
+        List<Job> listRm = new ArrayList<>();
+
         while(!jList.isEmpty() || !highQ.isEmpty() || !midQ.isEmpty() || !lowQ.isEmpty()) {
+
             if(time == 0) {
                 for(int i = 0; i < jList.size(); i++) {
                     if(time == jList.get(i).getArrTime()) {
-                        highQ.add(jList.get(i));
-                        jList.remove(i);
+                        highQ.add(jList.get(i)); 
+                        listRm.add(jList.get(i)); 
                     } //end if
                 } //end for
+                jList.removeAll(listRm);
+                listRm.clear();
             } //end if
              String temp = null;
              Job currJob = null; 
+
              if(!highQ.isEmpty()) {
                  currJob = highQ.poll();
                  temp = currJob.runJob(1);
@@ -44,15 +50,18 @@ public class MF extends Schedule {
                  for(int i = 0; i < jList.size(); i++) {
                     if(time == jList.get(i).getArrTime()) {
                         highQ.add(jList.get(i));
-                        jList.remove(i);
+                        listRm.add(jList.get(i));
                     } //end if
                  } //end for
 
+                 jList.removeAll(listRm);
+                 listRm.clear();
+
                  if(currJob.getDuration() > 0 && highQ.isEmpty() && midQ.isEmpty() && lowQ.isEmpty())
                     highQ.add(currJob);
-
-                 if(currJob.getDuration() > 0 && (!highQ.isEmpty() || !midQ.isEmpty() || lowQ.isEmpty()))
+                 else if(currJob.getDuration() > 0)
                     midQ.add(currJob);
+                 else { } //do nothing
              } //end if
              else if(!midQ.isEmpty()) {
                  currJob = midQ.poll();
@@ -63,15 +72,18 @@ public class MF extends Schedule {
                  for(int i = 0; i < jList.size(); i++) {
                     if(time == jList.get(i).getArrTime()) {
                         highQ.add(jList.get(i));
-                        jList.remove(i);
+                        listRm.add(jList.get(i));
                     } //end if
                  } //end for
 
+                 jList.removeAll(listRm);
+                 listRm.clear();
+
                  if(currJob.getDuration() > 0 && highQ.isEmpty() && midQ.isEmpty() && lowQ.isEmpty())
                     midQ.add(currJob);
-
-                 if(currJob.getDuration() > 0 && !highQ.isEmpty() || !midQ.isEmpty() || !lowQ.isEmpty())
+                 else if(currJob.getDuration() > 0)
                     lowQ.add(currJob);
+                 else { } //do nothing
              } //end else if
              else { //run job in low queue
                 currJob = lowQ.poll();
@@ -79,12 +91,15 @@ public class MF extends Schedule {
 
                 time++;
 
-                for(int i = 0; i < jList.size(); i++) {
+                  for(int i = 0; i < jList.size(); i++) {
                     if(time == jList.get(i).getArrTime()) {
                         highQ.add(jList.get(i));
-                        jList.remove(i);
+                        listRm.add(jList.get(i));
                     } //end if
                  } //end for
+
+                 jList.removeAll(listRm);
+                 listRm.clear();
 
                 if(currJob.getDuration() > 0)
                     lowQ.add(currJob);
