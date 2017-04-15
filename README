@@ -1,3 +1,28 @@
-To run:
+Matthew Villarreal
+miv140130
+CS 4348.002
 
-java Project3.java <inputFile> <scheduleAlg> [-quantumsize]
+Project 2
+
+Files:
+        Project3.java
+        Job.java
+        Schedule.java
+        DurCompare.java
+        FCFS.java
+        RoundRobin.java
+        SPN.java
+        SRT.java
+        HRRN.java
+        MF.java
+        OSProject3_miv140130.docx
+        
+Compile:
+        To compile, simply run the following command using the command line:
+
+            javac Project3.java
+
+Run:
+        Once inside the project directory, enter into the command line:
+
+            java Project3.java <inputFile> <FCFS|RR|SPN|SRT|HRRN|MF|ALL> [-quantumsize]
